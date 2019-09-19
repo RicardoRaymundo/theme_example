@@ -30,7 +30,7 @@ class Main extends StatelessWidget {
           body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),
-      home: _MainPage(title: 'Flutter Demo Home Page'),
+      home: _MainPage(title: 'Flutter Theme Example'),
     );
   }
 }

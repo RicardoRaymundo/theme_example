@@ -16,9 +16,13 @@ class _PageAState extends State<PageA> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
+
+              /// Acessando a propriedade 'accentColor' do MaterialApp
               color: Theme.of(context).accentColor,
               child: Text(
                 'Text with a background color, from Page A',
+
+                /// Acessando a propriedade 'textTheme.title' do MaterialApp
                 style: Theme.of(context).textTheme.title,
               ),
             ),
@@ -29,6 +33,9 @@ class _PageAState extends State<PageA> {
               color: Theme.of(context).accentColor,
               child: Text(
                 'Text with diferent font family',
+
+                /// Acessando a propriedade 'textTheme.title' do MaterialApp,
+                /// porém, alterando a 'fontFamily' desse texto.
                 style: Theme.of(context)
                     .textTheme
                     .title
@@ -38,7 +45,11 @@ class _PageAState extends State<PageA> {
           ],
         ),
       ),
+
+      /// Criando um tema único para o floatingActionButton
       floatingActionButton: Theme(
+
+        /// Copiando o ThemeData do contexto, porem alterando o esquema de cores.
         data: Theme.of(context).copyWith(
           colorScheme:
               Theme.of(context).colorScheme.copyWith(secondary: Colors.yellow),

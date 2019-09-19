@@ -9,44 +9,52 @@ class PageB extends StatefulWidget {
 class _PageBState extends State<PageB> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              color: Theme.of(context).primaryColor,
-              child: Text(
-                'Text with a background color, from Page B!',
-                style: Theme.of(context).textTheme.title.copyWith(color: Theme.of(context).accentColor),
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              color: Theme.of(context).accentColor,
-              child: Text(
-                'Text with diferent font family',
-                style: Theme.of(context)
-                    .textTheme
-                    .title
-                    .copyWith(fontFamily: 'Pacifico'),
-              ),
-            ),
-          ],
-        ),
+    return Theme(
+
+      /// Copiando o tema do contexto e somente alterando o 'brightness'
+      data:Theme.of(context).copyWith(
+        colorScheme:
+        Theme.of(context).colorScheme.copyWith(brightness: Brightness.light,),
       ),
-      floatingActionButton: Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme:
-          Theme.of(context).colorScheme.copyWith(secondary: Colors.yellow),
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                color: Theme.of(context).primaryColor,
+                child: Text(
+                  'Text with a background color, from Page B!',
+                  style: Theme.of(context).textTheme.title.copyWith(color: Theme.of(context).accentColor),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                color: Theme.of(context).accentColor,
+                child: Text(
+                  'Text with diferent font family',
+                  style: Theme.of(context)
+                      .textTheme
+                      .title
+                      .copyWith(fontFamily: 'Pacifico'),
+                ),
+              ),
+            ],
+          ),
         ),
-        child: FloatingActionButton(
-          onPressed: (){
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.add),
+        floatingActionButton: Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme:
+            Theme.of(context).colorScheme.copyWith(secondary: Colors.yellow),
+          ),
+          child: FloatingActionButton(
+            onPressed: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.add),
+          ),
         ),
       ),
     );

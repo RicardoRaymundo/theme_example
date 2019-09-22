@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:theme_example/theme/theme_config.dart';
+import 'package:theme_example/theme/theme_select.dart';
 
 class PageB extends StatefulWidget {
   @override
@@ -9,14 +11,13 @@ class PageB extends StatefulWidget {
 class _PageBState extends State<PageB> {
   @override
   Widget build(BuildContext context) {
-    return Theme(
+    return MaterialApp(
+      title: 'Theme selector example',
+      theme: ThemeConfig.instanceOf(context).chooseTheme(ThemeAspect.DARK),
+      debugShowCheckedModeBanner: false,
 
-      /// Copiando o tema do contexto e somente alterando o 'brightness'
-      data:Theme.of(context).copyWith(
-        colorScheme:
-        Theme.of(context).colorScheme.copyWith(brightness: Brightness.light,),
-      ),
-      child: Scaffold(
+      /// Recupera o tema default e configura o tema da aplicação
+      home: Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -35,10 +36,7 @@ class _PageBState extends State<PageB> {
                 color: Theme.of(context).accentColor,
                 child: Text(
                   'Text with diferent font family',
-                  style: Theme.of(context)
-                      .textTheme
-                      .title
-                      .copyWith(fontFamily: 'Pacifico'),
+                  style: Theme.of(context).textTheme.title.copyWith(fontFamily: 'Pacifico'),
                 ),
               ),
             ],
@@ -46,11 +44,10 @@ class _PageBState extends State<PageB> {
         ),
         floatingActionButton: Theme(
           data: Theme.of(context).copyWith(
-            colorScheme:
-            Theme.of(context).colorScheme.copyWith(secondary: Colors.yellow),
+            colorScheme: Theme.of(context).colorScheme.copyWith(secondary: Colors.yellow),
           ),
           child: FloatingActionButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
             child: Icon(Icons.add),

@@ -1,63 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:theme_example/page_a.dart';
+import 'package:theme_example/page/page_home.dart';
+import 'package:theme_example/theme/theme_config.dart';
+import 'package:theme_example/theme/theme_select.dart';
 
-void main() => runApp(Main());
+void main() {
+  runApp(
+    /// Envolvendo o Main em um StatefulWidget, que é filho de um InheritedWidget
+    ThemeConfig(
+      /// Tema inicial
+      initialTheme: ThemeAspect.LIGHT,
+      child: Main(),
+    ),
+  );
+}
 
-class Main extends StatelessWidget {
+///
+class Main extends StatefulWidget {
+  @override
+  _MainState createState() => _MainState();
+}
+
+///
+class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Theme selector example',
+      theme: ThemeConfig.of(context),
+      debugShowCheckedModeBanner: false,
 
-      /// MaterialApp é uma classe que pode receber ThemeData, que é um conjutnto
-      /// de propriedades de cores e estilos que podem ser utilizados pelos
-      /// material widgets do app
-      title: 'Flutter Demo',
-      theme: ThemeData(
+      /// Recupera o tema default e configura o tema da aplicação
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
 
-        // Define as cores e brilho default do app.
-        brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800],
-        accentColor: Colors.cyan[600],
+          /// Recupera uma cor do tema da aplicação
+          title: Text(
+            'Main Page',
 
-        // Define a font family default.
-        fontFamily: 'Montserrat',
-
-        // Define o TextTheme default. Use isso para especificar o estilo de texto
-        // default para headlines, titles, corpos de texto, etc.
-        textTheme: TextTheme(
-          headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-          body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+            /// Configurando o texto da app bar para o estilo padrão para titles,
+            /// definido no ThemeData do Material App. Porém com o método 'copyWith',
+            /// o tamanho da fonte é alterado para esse texto.
+            style: Theme.of(context).textTheme.title.copyWith(fontSize: 20),
+          ),
         ),
+        body: PageHome(),
       ),
-      home: _MainPage(title: 'Flutter Theme Example'),
-    );
-  }
-}
-
-class _MainPage extends StatefulWidget {
-  _MainPage({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<_MainPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-
-          /// Configurando o texto da app bar para o estilo padrão para titles,
-          /// definido no ThemeData do Material App. Porém com o método 'copyWith',
-          /// o tamanho da fonte é alterado para esse texto.
-          style: Theme.of(context).textTheme.title.copyWith(fontSize: 20),
-        ),
-      ),
-      body: PageA(),
     );
   }
 }

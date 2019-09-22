@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_example/page_b.dart';
+import 'package:theme_example/page/page_b.dart';
+import 'package:theme_example/page/page_select_theme.dart';
 
-class PageA extends StatefulWidget {
+class PageHome extends StatefulWidget {
   @override
-  _PageAState createState() => _PageAState();
+  _PageHomeState createState() => _PageHomeState();
 }
 
-class _PageAState extends State<PageA> {
+class _PageHomeState extends State<PageHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +57,7 @@ class _PageAState extends State<PageA> {
         ),
         child: FloatingActionButton(
           onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => PageB()));
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => PageSelectTheme()));
           },
           child: Icon(Icons.add),
         ),
